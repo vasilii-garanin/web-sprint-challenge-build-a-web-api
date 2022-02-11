@@ -49,4 +49,17 @@ router.put('/:id', checkProjectId, validateProject, (req, res, next) =>
         });
 });
 
+router.delete('/:id', checkProjectId, (req, res, next) =>
+{
+    Projects.remove(req.params.id)
+        .then(() =>
+        {
+            res.status(200).json({ message: 'The project has been nuked' });
+        })
+        .catch(error =>
+        {
+            next(error);
+        });
+});
+
 module.exports = router;
