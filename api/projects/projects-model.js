@@ -4,6 +4,7 @@ const mappers = require('../../data/helpers/mappers');
 
 module.exports = {
   get,
+  getAll,
   insert,
   update,
   remove,
@@ -36,6 +37,13 @@ function get(id) {
   }
 }
 
+function getAll()
+{
+    return db("projects").then(projects =>
+    {
+        return projects.map(project => mappers.projectToBody(project));
+    });
+}
 function insert(project) {
   return db("projects")
     .insert(project)
