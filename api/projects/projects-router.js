@@ -62,4 +62,14 @@ router.delete('/:id', checkProjectId, (req, res, next) =>
         });
 });
 
+router.get('/:id/actions', checkProjectId, (req, res, next) =>
+{
+    Projects.getProjectActions(req.project.id)
+        .then(actions => 
+        {
+            res.status(200).json(actions);
+        })
+        .catch(next);
+});
+
 module.exports = router;
