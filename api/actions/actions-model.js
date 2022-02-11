@@ -65,3 +65,5 @@ function remove(id)
 {
     return db('actions').where('id', id).del();
 }
+
+
